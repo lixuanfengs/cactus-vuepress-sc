@@ -18,7 +18,7 @@ if [ -z "$GITHUB_TOKEN" ]; then
 else
   msg='cactus 使用 github actions的自动部署'
   echo '===============================================================' + ${GITHUB_TOKEN}
-  githubUrl=https://${GITHUB_TOKEN}@github.com:lixuanfengs/cactus-vuepress.git
+  githubUrl=https://lixuanfengs:${GITHUB_TOKEN}@github.com:lixuanfengs/cactus-vuepress-sc.git
   git config --global user.name "lixuanfengs"
   git config --global user.email "1183895890@qq.com"
 fi
