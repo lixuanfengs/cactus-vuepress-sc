@@ -17,8 +17,8 @@ if [ -z "$GITHUB_TOKEN" ]; then
   githubUrl=git@github.com:lixuanfengs/cactus-vuepress.git
 else
   msg='cactus 使用 github actions的自动部署'
-  echo '===============================================================' + ${GITHUB_TOKEN}
-  githubUrl=https://lixuanfengs:${GITHUB_TOKEN}@github.com:lixuanfengs/cactus-vuepress-sc.git
+  echo '==============================================================' + ${GITHUB_TOKEN}
+  githubUrl=https://lixuanfengs:${GITHUB_TOKEN}@github.com:lixuanfengs/cactus-vuepress.git
   git config --global user.name "lixuanfengs"
   git config --global user.email "1183895890@qq.com"
 fi
@@ -26,6 +26,7 @@ fi
 git init
 git add -A
 git commit -m "${msg}"
+ echo '==============================================================' + $githubUrl
 git push -f $githubUrl master:gh-pages # 推送到github gh-pages分支
 
 # deploy to coding pages
