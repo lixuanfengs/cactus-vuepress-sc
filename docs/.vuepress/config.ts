@@ -35,6 +35,7 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
           {
             text: '后端技术源码',
             items: [
+              { text: 'SpringBoot2核心技术✨', link: '/pages/f1dad0/' },
               { text: 'SpringCloud微服务权限系统搭建✨', link: '/pages/4b362a/' },
               { text: '搭建rpc框架', link: '/pages/920e2b/' },
             ],
@@ -43,6 +44,13 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
             items: [
               { text: 'Docker', link: '/pages/ba6e69/' },
               { text: 'kubernetes✨', link: '/pages/237864/' },
+            ],
+          },{
+            text: '阅读源码系列',
+            items: [
+              { text: 'Spring Boot', link: '/pages/32e50d/' },
+              { text: 'Netty', link: '/pages/d065c4/' },
+              { text: 'Dubbo', link: '/pages/4d3c7f/' },
             ],
           },
         ],
