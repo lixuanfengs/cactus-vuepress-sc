@@ -53,6 +53,12 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
               { text: 'Dubbo', link: '/pages/4d3c7f/' },
             ],
           },
+          {
+            text: '学习笔记',
+            items: [
+              { text: '《SpringBoot教程》', link: '/note/SpringBoot/' },
+            ],
+          },
         ],
       },
       {
