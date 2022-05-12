@@ -24,7 +24,7 @@ function readFileList(dir = docsRoot, filesList = []) {
             name = fileNameArr[1]
             type = fileNameArr[2]
           } else { // 超过两个‘.’的
-            log(chalk.yellow(`warning: 该文件 "${filePath}" 没有按照约定命名，将忽略生成相应数据。`))
+            log(chalk.yellow( filePath +  `warning: 该文件 "${filePath}" 没有按照约定命名，将忽略生成相应数据。`))
             return
           }
           if(type === 'md'){ // 过滤非md文件
@@ -35,7 +35,7 @@ function readFileList(dir = docsRoot, filesList = []) {
           }
 
         }
-      }        
+      }
   });
   return filesList;
 }
