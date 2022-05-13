@@ -164,6 +164,8 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
     // categoryText: '随笔', // 碎片化文章（_posts文件夹的文章）预设生成的分类值，默认'随笔'
 
      bodyBgImg: [
+       'https://s1.ax1x.com/2022/05/13/Osyq2j.jpg','https://s1.ax1x.com/2022/05/13/Osyjrq.jpg','https://s1.ax1x.com/2022/05/13/OsyXMn.jpg','https://s1.ax1x.com/2022/05/13/OsyLxs.jpg','https://s1.ax1x.com/2022/05/13/OsybGQ.jpg','https://s1.ax1x.com/2022/05/13/Osyvq0.jpg',
+       'https://s1.ax1x.com/2022/05/13/Os6SaT.jpg','https://s1.ax1x.com/2022/05/13/OsyzZV.jpg','https://s1.ax1x.com/2022/05/13/Os6CiF.jpg','https://s1.ax1x.com/2022/05/13/Os6PG4.jpg','https://s1.ax1x.com/2022/05/13/Os6iRJ.jpg',
          'https://s1.ax1x.com/2022/05/12/O0q74I.jpg','https://s1.ax1x.com/2022/05/12/O0qbCt.jpg','https://s1.ax1x.com/2022/05/12/O0qq8P.jpg','https://s1.ax1x.com/2022/05/12/O0qLgf.jpg','https://s1.ax1x.com/2022/05/12/O0qOv8.jpg',
          'https://s1.ax1x.com/2022/05/12/O0qvDg.jpg','https://s1.ax1x.com/2022/05/12/O0qxbQ.jpg','https://s1.ax1x.com/2022/05/12/O0qjKS.jpg','https://s1.ax1x.com/2022/05/12/O0LSEj.jpg','https://s1.ax1x.com/2022/05/12/O0LpUs.jpg',
          'https://s1.ax1x.com/2022/05/12/O0L95n.jpg','https://s1.ax1x.com/2022/05/12/O0Li80.jpg','https://s1.ax1x.com/2022/05/12/O0LPCq.jpg','https://s1.ax1x.com/2022/05/12/O0LF2V.jpg','https://s1.ax1x.com/2022/05/12/O0LkvT.jpg',
