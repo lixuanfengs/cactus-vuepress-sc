@@ -54,6 +54,7 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
               { text: '《SpringBoot教程》', link: '/note/SpringBoot/' },
               { text: '《Docker教程》', link: '/note/Docker/' },
               { text: '《Kubernetes教程》', link: '/note/Kubernetes/' },
+              { text: '《SpringCloud微服务权限系统搭建》', link: '/note/SpringCloud-febs/' },
             ],
           },
         ],
