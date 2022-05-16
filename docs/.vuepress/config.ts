@@ -164,25 +164,30 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
     // categoryText: '随笔', // 碎片化文章（_posts文件夹的文章）预设生成的分类值，默认'随笔'
 
      bodyBgImg: [
-       'https://s1.ax1x.com/2022/05/13/Osyq2j.jpg','https://s1.ax1x.com/2022/05/13/Osyjrq.jpg','https://s1.ax1x.com/2022/05/13/OsyXMn.jpg','https://s1.ax1x.com/2022/05/13/OsyLxs.jpg','https://s1.ax1x.com/2022/05/13/OsybGQ.jpg','https://s1.ax1x.com/2022/05/13/Osyvq0.jpg',
-       'https://s1.ax1x.com/2022/05/13/Os6SaT.jpg','https://s1.ax1x.com/2022/05/13/OsyzZV.jpg','https://s1.ax1x.com/2022/05/13/Os6CiF.jpg','https://s1.ax1x.com/2022/05/13/Os6PG4.jpg','https://s1.ax1x.com/2022/05/13/Os6iRJ.jpg',
-         'https://s1.ax1x.com/2022/05/12/O0q74I.jpg','https://s1.ax1x.com/2022/05/12/O0qbCt.jpg','https://s1.ax1x.com/2022/05/12/O0qq8P.jpg','https://s1.ax1x.com/2022/05/12/O0qLgf.jpg','https://s1.ax1x.com/2022/05/12/O0qOv8.jpg',
-         'https://s1.ax1x.com/2022/05/12/O0qvDg.jpg','https://s1.ax1x.com/2022/05/12/O0qxbQ.jpg','https://s1.ax1x.com/2022/05/12/O0qjKS.jpg','https://s1.ax1x.com/2022/05/12/O0LSEj.jpg','https://s1.ax1x.com/2022/05/12/O0LpUs.jpg',
-         'https://s1.ax1x.com/2022/05/12/O0L95n.jpg','https://s1.ax1x.com/2022/05/12/O0Li80.jpg','https://s1.ax1x.com/2022/05/12/O0LPCq.jpg','https://s1.ax1x.com/2022/05/12/O0LF2V.jpg','https://s1.ax1x.com/2022/05/12/O0LkvT.jpg',
-         'https://s1.ax1x.com/2022/05/12/O0LVrF.jpg','https://s1.ax1x.com/2022/05/12/O0LEKU.jpg','https://s1.ax1x.com/2022/05/12/O0LZb4.jpg','https://s1.ax1x.com/2022/05/12/O0Lna9.jpg','https://s1.ax1x.com/2022/05/12/O0LmVJ.jpg',
-         'https://s1.ax1x.com/2022/05/12/O0Lu5R.jpg', 'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/87c01ec7gy1frmrxuzha8j21hc0u0gur.jpg',
-         'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/87c01ec7gy1frmmw9573mj21kw0w0npk.jpg', 'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/87c01ec7gy1frmrru1bh9j21hc0u0qbx.jpg',
-         'https://cdn.jsdelivr.net/gh/xugaoyi/image_store/blog/20200507175828.jpeg', 'https://s1.ax1x.com/2022/05/10/OtqWtO.png', 'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/87c01ec7gy1frmrtnq32hj21hc0u0wnl.jpg',
-         'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/0060lm7Tly1ftg6owkw9lj31hc0u0tt9.jpg', 'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/0060lm7Tly1ftg6x22sgcj31hc0u0qh8.jpg', 'https://s1.ax1x.com/2022/05/10/ONPS0g.jpg','https://s1.ax1x.com/2022/05/10/ONCvX8.jpg', 'https://s1.ax1x.com/2022/05/10/ONCj6f.jpg',
-         'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/0060lm7Tly1ftg6omusg9j31hc0u010h.jpg', 'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/0060lm7Tly1ftg6p3dkm1j31hc0u04mm.jpg',
-         'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/87c01ec7gy1frmrr7y6u3j21hc0u0k0c.jpg', 'https://cdn.jsdelivr.net/gh/xugaoyi/image_store/blog/20200507175845.jpeg',
-         'https://s1.ax1x.com/2022/05/10/ONP4Cn.jpg','https://s1.ax1x.com/2022/05/10/ONPREQ.jpg','https://s1.ax1x.com/2022/05/10/ONP53q.jpg','https://s1.ax1x.com/2022/05/10/ONPf4s.jpg',
-         'https://s1.ax1x.com/2022/05/10/ONPWNj.jpg','https://s1.ax1x.com/2022/05/10/ONP7uT.jpg', 'https://s1.ax1x.com/2022/05/10/ONPIg0.jpg', 'https://s1.ax1x.com/2022/05/10/ONPovV.jpg',
-         'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/87c01ec7gy1frmmknznonj21hc0u01l1.jpg','https://cdn.jsdelivr.net/gh/xugaoyi/image_store/blog/20200507175846.jpeg', 'https://cactusmall.oss-cn-beijing.aliyuncs.com/cactusli/anime%20aesthetics%20-%20thirty-seven.gif',
-         'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/87c01ec7gy1frmmmaptjmj21hc0u0npf.jpg',
-         'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/87c01ec7gy1frmrz8e3ytj21hc0u0wnn.jpg',
-         'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/0060lm7Tly1ftg6ozby6nj31hc0u01cf.jpg',
-         'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/0060lm7Tly1ftg6xc454vj31hc0u07wh.jpg',
+       'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/img66038660021.jpg','https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/img76236044711.jpg',
+       'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/img96437703501.jpg','https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/img26938301951.jpg',
+       'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/img96035932951.jpg','https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/img86932187781.jpg',
+       'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/TUAPI-EEES-CC--885738232.jpg','https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/TUAPI-EEES-CC-0851470029.jpg',
+       'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/TUAPI-EEES-CC--1881213025.jpg','https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/TUAPI-EEES-CC--1685299567.jpg',
+       'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/TUAPI-EEES-CC-0843934896.jpg','https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/TUAPI-EEES-CC--1232354350.jpg',
+       'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/87c01ec7gy1frmrxuzha8j21hc0u0gur.jpg',
+       'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/87c01ec7gy1frmmw9573mj21kw0w0npk.jpg',
+       'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/87c01ec7gy1frmrru1bh9j21hc0u0qbx.jpg',
+       'https://cdn.jsdelivr.net/gh/xugaoyi/image_store/blog/20200507175828.jpeg',
+       'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/87c01ec7gy1frmrtnq32hj21hc0u0wnl.jpg',
+       'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/0060lm7Tly1ftg6owkw9lj31hc0u0tt9.jpg',
+       'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/0060lm7Tly1ftg6x22sgcj31hc0u0qh8.jpg',
+       'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/0060lm7Tly1ftg6omusg9j31hc0u010h.jpg',
+       'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/0060lm7Tly1ftg6p3dkm1j31hc0u04mm.jpg',
+       'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/87c01ec7gy1frmrr7y6u3j21hc0u0k0c.jpg',
+       'https://cdn.jsdelivr.net/gh/xugaoyi/image_store/blog/20200507175845.jpeg',
+       'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/87c01ec7gy1frmmknznonj21hc0u01l1.jpg',
+       'https://cdn.jsdelivr.net/gh/xugaoyi/image_store/blog/20200507175846.jpeg',
+       'https://cactusmall.oss-cn-beijing.aliyuncs.com/cactusli/anime%20aesthetics%20-%20thirty-seven.gif',
+       'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/87c01ec7gy1frmmmaptjmj21hc0u0npf.jpg',
+       'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/87c01ec7gy1frmrz8e3ytj21hc0u0wnn.jpg',
+       'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/0060lm7Tly1ftg6ozby6nj31hc0u01cf.jpg',
+       'https://cdn.jsdelivr.net/gh/lixuanfengs/blog-images/cactus-vuepress-img/0060lm7Tly1ftg6xc454vj31hc0u07wh.jpg',
      ], // body背景大图，默认无。 单张图片 String | 多张图片 Array, 多张图片时每隔15秒换一张。
      bodyBgImgOpacity: 1.0, // body背景图透明度，选值 0.1~ 1.0, 默认0.5
      titleBadge: false, // 文章标题前的图标是否显示，默认true
@@ -361,7 +366,7 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
         options: {
           clientID: '5942c087c9fcf64976c3',
           clientSecret: 'ee148e6578ef59a712692c1a70219408bad7adba',
-          repo: 'cactus-vuepress', // GitHub 仓库
+          repo: 'cactus-vuepress-sc', // GitHub 仓库
           owner: 'lixuanfengs', // GitHub仓库所有者
           admin: ['lixuanfengs'], // 对仓库有写权限的人
           // distractionFreeMode: true,
