@@ -164,7 +164,11 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
     // categoryText: '随笔', // 碎片化文章（_posts文件夹的文章）预设生成的分类值，默认'随笔'
 
      bodyBgImg: [
-         'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/87c01ec7gy1frmrxboukrj21hc0u07df.jpg',
+         'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/TUAPI-EEES-CC--730849387.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/TUAPI-EEES-CC-1974204846.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/TUAPI-EEES-CC-0252845574.jpg',
+         'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/img46035074421.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/img16434280251.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/img76431988791.jpg',
+         'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/img36438140811.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/img26535261861.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/img76439468441.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/img76337037221.jpg',
+         'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/img26233572161.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/img46638415041.jpg',
+         'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/87c01ec7gy1frmrxboukrj21hc0u07df.jpg','https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/TUAPI-EEES-CC-1010545059.jpg',
          'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/img66038660021.jpg','https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/img76236044711.jpg',
          'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/img96437703501.jpg','https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/img26938301951.jpg',
          'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/img96035932951.jpg','https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/img86932187781.jpg',
