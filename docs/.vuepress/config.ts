@@ -164,6 +164,12 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
     // categoryText: '随笔', // 碎片化文章（_posts文件夹的文章）预设生成的分类值，默认'随笔'
 
      bodyBgImg: [
+         'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/87c01ec7gy1frmrtnq32hj21hc0u0wnl.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/0060lm7Tly1ftg6owkw9lj31hc0u0tt9.jpg',
+         'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/0060lm7Tly1ftg6x22sgcj31hc0u0qh8.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/0060lm7Tly1ftg6omusg9j31hc0u010h.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/0060lm7Tly1ftg6p3dkm1j31hc0u04mm.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/87c01ec7gy1frmrr7y6u3j21hc0u0k0c.jpg',
+         'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/87c01ec7gy1frmmknznonj21hc0u01l1.jpg',  'https://cactusmall.oss-cn-beijing.aliyuncs.com/cactusli/anime%20aesthetics%20-%20thirty-seven.gif',
+         'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/87c01ec7gy1frmmmaptjmj21hc0u0npf.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/87c01ec7gy1frmrz8e3ytj21hc0u0wnn.jpg',
+         'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/0060lm7Tly1ftg6ozby6nj31hc0u01cf.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/0060lm7Tly1ftg6xc454vj31hc0u07wh.jpg',
+         'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/TUAPI-EEES-CC-0122236602.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/img16832561801.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/img66634546671.jpg',
          'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/TUAPI-EEES-CC--730849387.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/TUAPI-EEES-CC-1974204846.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/TUAPI-EEES-CC-0252845574.jpg',
          'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/img46035074421.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/img16434280251.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/img76431988791.jpg',
          'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/img36438140811.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/img26535261861.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/img76439468441.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/img76337037221.jpg',
@@ -175,12 +181,7 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
          'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/TUAPI-EEES-CC--885738232.jpg','https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/TUAPI-EEES-CC-0851470029.jpg',
          'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/TUAPI-EEES-CC--1881213025.jpg','https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/TUAPI-EEES-CC--1685299567.jpg',
          'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/TUAPI-EEES-CC-0843934896.jpg','https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/TUAPI-EEES-CC--1232354350.jpg',
-         'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/87c01ec7gy1frmrxuzha8j21hc0u0gur.jpg','https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/87c01ec7gy1frmmw9573mj21kw0w0npk.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/87c01ec7gy1frmrru1bh9j21hc0u0qbx.jpg',
-         'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/87c01ec7gy1frmrtnq32hj21hc0u0wnl.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/0060lm7Tly1ftg6owkw9lj31hc0u0tt9.jpg',
-         'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/0060lm7Tly1ftg6x22sgcj31hc0u0qh8.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/0060lm7Tly1ftg6omusg9j31hc0u010h.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/0060lm7Tly1ftg6p3dkm1j31hc0u04mm.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/87c01ec7gy1frmrr7y6u3j21hc0u0k0c.jpg',
-         'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/87c01ec7gy1frmmknznonj21hc0u01l1.jpg',  'https://cactusmall.oss-cn-beijing.aliyuncs.com/cactusli/anime%20aesthetics%20-%20thirty-seven.gif',
-         'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/87c01ec7gy1frmmmaptjmj21hc0u0npf.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/87c01ec7gy1frmrz8e3ytj21hc0u0wnn.jpg',
-         'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/0060lm7Tly1ftg6ozby6nj31hc0u01cf.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/0060lm7Tly1ftg6xc454vj31hc0u07wh.jpg',
+         'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/87c01ec7gy1frmrxuzha8j21hc0u0gur.jpg','https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/87c01ec7gy1frmmw9573mj21kw0w0npk.jpg', 'https://lixuanfengs.github.io/blog-images/cactus-vuepress-img/87c01ec7gy1frmrru1bh9j21hc0u0qbx.jpg'
      ], // body背景大图，默认无。 单张图片 String | 多张图片 Array, 多张图片时每隔15秒换一张。
      bodyBgImgOpacity: 1.0, // body背景图透明度，选值 0.1~ 1.0, 默认0.5
      titleBadge: false, // 文章标题前的图标是否显示，默认true
