@@ -41,6 +41,12 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
             ],
           },
           {
+               text: '开发环境配置',
+               items: [
+                   { text: '负载均衡和web服务', link: '/pages/d2639c/' }
+               ],
+          },
+          {
             text: '阅读源码系列',
             items: [
               { text: 'Spring Boot', link: '/pages/32e50d/' },
@@ -358,8 +364,8 @@ export default defineConfig4CustomTheme<VdoingThemeConfig>({
       {
         choosen: 'gitalk',
         options: {
-          clientID: '5942c087c9fcf64976c3',
-          clientSecret: 'ee148e6578ef59a712692c1a70219408bad7adba',
+          clientID: '3ef185ad296d2b9df226',
+          clientSecret: '7a5a64ed3a4ba1ff5615b3daf91673966bafb199',
           repo: 'cactus-vuepress-sc', // GitHub 仓库
           owner: 'lixuanfengs', // GitHub仓库所有者
           admin: ['lixuanfengs'], // 对仓库有写权限的人
