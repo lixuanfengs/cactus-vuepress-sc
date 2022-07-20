@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>4 基于消息中间件RocketMQ方案（二）🍌 | Cactusli blog</title>
+    <meta name="generator" content="VuePress 1.9.5">
+    <link rel="icon" href="/img/favicon.ico">
+    <meta name="description" content="后端技术博客,专注前后端学习与总结。Java,JavaScript,js,ES6,TypeScript,vue,React,python,css3,html5,Node,git,github等技术文章。">
+    <meta name="keywords" content="后端端博客,个人技术博客,后端,后端开发,前端框架,Java后端,后端面试题,技术文档,学习,面试,JavaScript,js,ES6,TypeScript,vue,python,css3,html5,Node,git,github,markdown">
+    <meta name="baidu-site-verification" content="7F55weZDDc">
+    <meta name="theme-color" content="#11a8cd">
+    
+    <link rel="preload" href="/assets/css/0.styles.fc148476.css" as="style"><link rel="preload" href="/assets/js/app.857140c0.js" as="script"><link rel="preload" href="/assets/js/2.39467ed8.js" as="script"><link rel="preload" href="/assets/js/279.2fa4de9d.js" as="script"><link rel="prefetch" href="/assets/js/10.3d1b801d.js"><link rel="prefetch" href="/assets/js/100.98d428b8.js"><link rel="prefetch" href="/assets/js/101.b3e103b6.js"><link rel="prefetch" href="/assets/js/102.89db0879.js"><link rel="prefetch" href="/assets/js/103.d5f4988f.js"><link rel="prefetch" href="/assets/js/104.210443d8.js"><link rel="prefetch" href="/assets/js/105.be4f1244.js"><link rel="prefetch" href="/assets/js/106.e0bcb940.js"><link rel="prefetch" href="/assets/js/107.4d768cb5.js"><link rel="prefetch" href="/assets/js/108.2dadba51.js"><link rel="prefetch" href="/assets/js/109.0f0acc18.js"><link rel="prefetch" href="/assets/js/11.4cc46225.js"><link rel="prefetch" href="/assets/js/110.41c11c7b.js"><link rel="prefetch" href="/assets/js/111.23b8dc75.js"><link rel="prefetch" href="/assets/js/112.d82588cf.js"><link rel="prefetch" href="/assets/js/113.3ac41026.js"><link rel="prefetch" href="/assets/js/114.a3fc377d.js"><link rel="prefetch" href="/assets/js/115.2423d90c.js"><link rel="prefetch" href="/assets/js/116.b86a7a7e.js"><link rel="prefetch" href="/assets/js/117.343af19a.js"><link rel="prefetch" href="/assets/js/118.f27b55a5.js"><link rel="prefetch" href="/assets/js/119.1ab5c935.js"><link rel="prefetch" href="/assets/js/12.2aa27c2d.js"><link rel="prefetch" href="/assets/js/120.67014971.js"><link rel="prefetch" href="/assets/js/121.ccfd8352.js"><link rel="prefetch" href="/assets/js/122.9304c6d0.js"><link rel="prefetch" href="/assets/js/123.e025141e.js"><link rel="prefetch" href="/assets/js/124.5ff9d875.js"><link rel="prefetch" href="/assets/js/125.35c65e9a.js"><link rel="prefetch" href="/assets/js/126.87ed2dfb.js"><link rel="prefetch" href="/assets/js/127.771f18db.js"><link rel="prefetch" href="/assets/js/128.22646b3d.js"><link rel="prefetch" href="/assets/js/129.9d395e26.js"><link rel="prefetch" href="/assets/js/13.e2a810b7.js"><link rel="prefetch" href="/assets/js/130.47544c21.js"><link rel="prefetch" href="/assets/js/131.52d9355e.js"><link rel="prefetch" href="/assets/js/132.355ce5b7.js"><link rel="prefetch" href="/assets/js/133.ada35331.js"><link rel="prefetch" href="/assets/js/134.ea30ce67.js"><link rel="prefetch" href="/assets/js/135.d7fc6844.js"><link rel="prefetch" href="/assets/js/136.e1e6a107.js"><link rel="prefetch" href="/assets/js/137.c6274046.js"><link rel="prefetch" href="/assets/js/138.98ea9c27.js"><link rel="prefetch" href="/assets/js/139.d8731326.js"><link rel="prefetch" href="/assets/js/14.d8552fcd.js"><link rel="prefetch" href="/assets/js/140.8ec55bd1.js"><link rel="prefetch" href="/assets/js/141.d3b71b85.js"><link rel="prefetch" href="/assets/js/142.59e2c804.js"><link rel="prefetch" href="/assets/js/143.fc566dd8.js"><link rel="prefetch" href="/assets/js/144.9981f8f4.js"><link rel="prefetch" href="/assets/js/145.c4d8ce28.js"><link rel="prefetch" href="/assets/js/146.3995e003.js"><link rel="prefetch" href="/assets/js/147.c5ee214a.js"><link rel="prefetch" href="/assets/js/148.acc93214.js"><link rel="prefetch" href="/assets/js/149.5d0fd297.js"><link rel="prefetch" href="/assets/js/15.c157a4aa.js"><link rel="prefetch" href="/assets/js/150.acbe6c77.js"><link rel="prefetch" href="/assets/js/151.e403d3b1.js"><link rel="prefetch" href="/assets/js/152.839c5fec.js"><link rel="prefetch" href="/assets/js/153.8363c131.js"><link rel="prefetch" href="/assets/js/154.750a5b46.js"><link rel="prefetch" href="/assets/js/155.0439ffd5.js"><link rel="prefetch" href="/assets/js/156.e7ebccb3.js"><link rel="prefetch" href="/assets/js/157.355e28f7.js"><link rel="prefetch" href="/assets/js/158.6a7450f0.js"><link rel="prefetch" href="/assets/js/159.a452cee8.js"><link rel="prefetch" href="/assets/js/16.1ae47011.js"><link rel="prefetch" href="/assets/js/160.16ee4b66.js"><link rel="prefetch" href="/assets/js/161.8a221423.js"><link rel="prefetch" href="/assets/js/162.8b44a4c0.js"><link rel="prefetch" href="/assets/js/163.1acb8cb6.js"><link rel="prefetch" href="/assets/js/164.ea49894e.js"><link rel="prefetch" href="/assets/js/165.4470fee4.js"><link rel="prefetch" href="/assets/js/166.37117eec.js"><link rel="prefetch" href="/assets/js/167.6fbf78fa.js"><link rel="prefetch" href="/assets/js/168.990b9ddb.js"><link rel="prefetch" href="/assets/js/169.ff5db0aa.js"><link rel="prefetch" href="/assets/js/17.fbf87255.js"><link rel="prefetch" href="/assets/js/170.668f7a8a.js"><link rel="prefetch" href="/assets/js/171.6f213dce.js"><link rel="prefetch" href="/assets/js/172.921a8ab0.js"><link rel="prefetch" href="/assets/js/173.fa2624d5.js"><link rel="prefetch" href="/assets/js/174.45576d91.js"><link rel="prefetch" href="/assets/js/175.b7d5a43b.js"><link rel="prefetch" href="/assets/js/176.4185c359.js"><link rel="prefetch" href="/assets/js/177.54815dc1.js"><link rel="prefetch" href="/assets/js/178.de774346.js"><link rel="prefetch" href="/assets/js/179.16c52894.js"><link rel="prefetch" href="/assets/js/18.8de9cbbb.js"><link rel="prefetch" href="/assets/js/180.d77de8e3.js"><link rel="prefetch" href="/assets/js/181.9c903d05.js"><link rel="prefetch" href="/assets/js/182.4b2d9872.js"><link rel="prefetch" href="/assets/js/183.01f29501.js"><link rel="prefetch" href="/assets/js/184.bdf41c56.js"><link rel="prefetch" href="/assets/js/185.fbd6b90c.js"><link rel="prefetch" href="/assets/js/186.76b6e18b.js"><link rel="prefetch" href="/assets/js/187.ab1a28af.js"><link rel="prefetch" href="/assets/js/188.3dfe1ff9.js"><link rel="prefetch" href="/assets/js/189.e642a196.js"><link rel="prefetch" href="/assets/js/19.78bc71fd.js"><link rel="prefetch" href="/assets/js/190.083ce24b.js"><link rel="prefetch" href="/assets/js/191.843965c8.js"><link rel="prefetch" href="/assets/js/192.3ea3739d.js"><link rel="prefetch" href="/assets/js/193.b7121a7e.js"><link rel="prefetch" href="/assets/js/194.eac28f15.js"><link rel="prefetch" href="/assets/js/195.209440ca.js"><link rel="prefetch" href="/assets/js/196.fdb5d6b6.js"><link rel="prefetch" href="/assets/js/197.a44fc0ac.js"><link rel="prefetch" href="/assets/js/198.412fbbe0.js"><link rel="prefetch" href="/assets/js/199.9ec13665.js"><link rel="prefetch" href="/assets/js/20.6d8267c2.js"><link rel="prefetch" href="/assets/js/200.a6937fe4.js"><link rel="prefetch" href="/assets/js/201.dd59ba4b.js"><link rel="prefetch" href="/assets/js/202.ac75e39e.js"><link rel="prefetch" href="/assets/js/203.6263c95b.js"><link rel="prefetch" href="/assets/js/204.7e9a343c.js"><link rel="prefetch" href="/assets/js/205.25ce0ed3.js"><link rel="prefetch" href="/assets/js/206.bdb82cb6.js"><link rel="prefetch" href="/assets/js/207.834f9c1d.js"><link rel="prefetch" href="/assets/js/208.f7478410.js"><link rel="prefetch" href="/assets/js/209.28531268.js"><link rel="prefetch" href="/assets/js/21.62c43aaf.js"><link rel="prefetch" href="/assets/js/210.b315b02d.js"><link rel="prefetch" href="/assets/js/211.a76263b7.js"><link rel="prefetch" href="/assets/js/212.dbad96c5.js"><link rel="prefetch" href="/assets/js/213.5f21ae53.js"><link rel="prefetch" href="/assets/js/214.0b96f99c.js"><link rel="prefetch" href="/assets/js/215.86a56362.js"><link rel="prefetch" href="/assets/js/216.09cbb982.js"><link rel="prefetch" href="/assets/js/217.dd7d2be7.js"><link rel="prefetch" href="/assets/js/218.8d22f122.js"><link rel="prefetch" href="/assets/js/219.75152ca9.js"><link rel="prefetch" href="/assets/js/22.fe4fe96d.js"><link rel="prefetch" href="/assets/js/220.4279ab80.js"><link rel="prefetch" href="/assets/js/221.37c0aac0.js"><link rel="prefetch" href="/assets/js/222.0c0c2a96.js"><link rel="prefetch" href="/assets/js/223.555a0aae.js"><link rel="prefetch" href="/assets/js/224.c8658d4a.js"><link rel="prefetch" href="/assets/js/225.b1473178.js"><link rel="prefetch" href="/assets/js/226.23b9e5c0.js"><link rel="prefetch" href="/assets/js/227.ec45dc68.js"><link rel="prefetch" href="/assets/js/228.bc0c77d3.js"><link rel="prefetch" href="/assets/js/229.6f96286a.js"><link rel="prefetch" href="/assets/js/23.ec676385.js"><link rel="prefetch" href="/assets/js/230.a147ee6f.js"><link rel="prefetch" href="/assets/js/231.99388b6a.js"><link rel="prefetch" href="/assets/js/232.9a9b95b1.js"><link rel="prefetch" href="/assets/js/233.fdd68802.js"><link rel="prefetch" href="/assets/js/234.107fd2c5.js"><link rel="prefetch" href="/assets/js/235.1f08cb29.js"><link rel="prefetch" href="/assets/js/236.0c1ab42d.js"><link rel="prefetch" href="/assets/js/237.362b0b8d.js"><link rel="prefetch" href="/assets/js/238.bdcf442c.js"><link rel="prefetch" href="/assets/js/239.6fd63bdf.js"><link rel="prefetch" href="/assets/js/24.30e7f031.js"><link rel="prefetch" href="/assets/js/240.09429aa7.js"><link rel="prefetch" href="/assets/js/241.9839913a.js"><link rel="prefetch" href="/assets/js/242.95b2ec94.js"><link rel="prefetch" href="/assets/js/243.addf605b.js"><link rel="prefetch" href="/assets/js/244.f7b89329.js"><link rel="prefetch" href="/assets/js/245.329af6f2.js"><link rel="prefetch" href="/assets/js/246.beeb48b5.js"><link rel="prefetch" href="/assets/js/247.d722e4c5.js"><link rel="prefetch" href="/assets/js/248.ef00c671.js"><link rel="prefetch" href="/assets/js/249.9864282a.js"><link rel="prefetch" href="/assets/js/25.a283d61e.js"><link rel="prefetch" href="/assets/js/250.660065ce.js"><link rel="prefetch" href="/assets/js/251.ff674015.js"><link rel="prefetch" href="/assets/js/252.4f885a75.js"><link rel="prefetch" href="/assets/js/253.1de7c927.js"><link rel="prefetch" href="/assets/js/254.4c68d9d3.js"><link rel="prefetch" href="/assets/js/255.0c3971f4.js"><link rel="prefetch" href="/assets/js/256.49316a96.js"><link rel="prefetch" href="/assets/js/257.c7716f47.js"><link rel="prefetch" href="/assets/js/258.a3036dc8.js"><link rel="prefetch" href="/assets/js/259.99dad238.js"><link rel="prefetch" href="/assets/js/26.571d87bb.js"><link rel="prefetch" href="/assets/js/260.34d43437.js"><link rel="prefetch" href="/assets/js/261.eca8a6ce.js"><link rel="prefetch" href="/assets/js/262.e1c63ca3.js"><link rel="prefetch" href="/assets/js/263.15c2a07b.js"><link rel="prefetch" href="/assets/js/264.afa373f9.js"><link rel="prefetch" href="/assets/js/265.aa5d9769.js"><link rel="prefetch" href="/assets/js/266.60cd961a.js"><link rel="prefetch" href="/assets/js/267.0a4bebb5.js"><link rel="prefetch" href="/assets/js/268.88dab831.js"><link rel="prefetch" href="/assets/js/269.431fc69c.js"><link rel="prefetch" href="/assets/js/27.2837680e.js"><link rel="prefetch" href="/assets/js/270.f37c8a26.js"><link rel="prefetch" href="/assets/js/271.1bb2cb8f.js"><link rel="prefetch" href="/assets/js/272.299f723b.js"><link rel="prefetch" href="/assets/js/273.807207e9.js"><link rel="prefetch" href="/assets/js/274.2f011a27.js"><link rel="prefetch" href="/assets/js/275.ea075944.js"><link rel="prefetch" href="/assets/js/276.c020f32b.js"><link rel="prefetch" href="/assets/js/277.f6196b31.js"><link rel="prefetch" href="/assets/js/278.150f8c8f.js"><link rel="prefetch" href="/assets/js/28.220dd0f1.js"><link rel="prefetch" href="/assets/js/280.cdf0cd27.js"><link rel="prefetch" href="/assets/js/281.d547c940.js"><link rel="prefetch" href="/assets/js/282.27f7c02c.js"><link rel="prefetch" href="/assets/js/283.85878e0f.js"><link rel="prefetch" href="/assets/js/284.ae15c11f.js"><link rel="prefetch" href="/assets/js/285.e7d3c727.js"><link rel="prefetch" href="/assets/js/286.6365144d.js"><link rel="prefetch" href="/assets/js/287.9d3dda18.js"><link rel="prefetch" href="/assets/js/288.79c12c44.js"><link rel="prefetch" href="/assets/js/289.73c64f95.js"><link rel="prefetch" href="/assets/js/29.ea97d69e.js"><link rel="prefetch" href="/assets/js/290.c15107f5.js"><link rel="prefetch" href="/assets/js/291.1a6d4f66.js"><link rel="prefetch" href="/assets/js/292.5348b991.js"><link rel="prefetch" href="/assets/js/293.221528b7.js"><link rel="prefetch" href="/assets/js/294.0e67abd6.js"><link rel="prefetch" href="/assets/js/295.ad9cc6ff.js"><link rel="prefetch" href="/assets/js/296.f7884ba4.js"><link rel="prefetch" href="/assets/js/297.cfa4c0ec.js"><link rel="prefetch" href="/assets/js/298.61f35e94.js"><link rel="prefetch" href="/assets/js/299.103d76f4.js"><link rel="prefetch" href="/assets/js/3.10f4d941.js"><link rel="prefetch" href="/assets/js/30.6098f61e.js"><link rel="prefetch" href="/assets/js/300.28658c33.js"><link rel="prefetch" href="/assets/js/301.415a3381.js"><link rel="prefetch" href="/assets/js/302.fa1c3efb.js"><link rel="prefetch" href="/assets/js/303.e085e511.js"><link rel="prefetch" href="/assets/js/304.cce38275.js"><link rel="prefetch" href="/assets/js/305.1f8fc2b3.js"><link rel="prefetch" href="/assets/js/306.6d0fd816.js"><link rel="prefetch" href="/assets/js/307.473c4699.js"><link rel="prefetch" href="/assets/js/308.9b2fe12d.js"><link rel="prefetch" href="/assets/js/309.4c9b5398.js"><link rel="prefetch" href="/assets/js/31.b63722d2.js"><link rel="prefetch" href="/assets/js/310.e1c48b1d.js"><link rel="prefetch" href="/assets/js/311.aa568e46.js"><link rel="prefetch" href="/assets/js/312.dabd945d.js"><link rel="prefetch" href="/assets/js/313.1443d798.js"><link rel="prefetch" href="/assets/js/314.b02cb845.js"><link rel="prefetch" href="/assets/js/315.e11e723d.js"><link rel="prefetch" href="/assets/js/316.4df35765.js"><link rel="prefetch" href="/assets/js/317.cf6be72f.js"><link rel="prefetch" href="/assets/js/318.3efb96e4.js"><link rel="prefetch" href="/assets/js/319.9323712d.js"><link rel="prefetch" href="/assets/js/32.b5e8606a.js"><link rel="prefetch" href="/assets/js/320.82b67656.js"><link rel="prefetch" href="/assets/js/321.80d2b48b.js"><link rel="prefetch" href="/assets/js/322.34cda756.js"><link rel="prefetch" href="/assets/js/323.9d9e17eb.js"><link rel="prefetch" href="/assets/js/324.54678789.js"><link rel="prefetch" href="/assets/js/325.35027b59.js"><link rel="prefetch" href="/assets/js/326.c0c6e26d.js"><link rel="prefetch" href="/assets/js/327.06bb68b6.js"><link rel="prefetch" href="/assets/js/328.6085d6cd.js"><link rel="prefetch" href="/assets/js/329.1d91c526.js"><link rel="prefetch" href="/assets/js/33.c0be09e9.js"><link rel="prefetch" href="/assets/js/330.a26e4322.js"><link rel="prefetch" href="/assets/js/331.07e1351a.js"><link rel="prefetch" href="/assets/js/332.ee795b8d.js"><link rel="prefetch" href="/assets/js/333.6bbd5f9a.js"><link rel="prefetch" href="/assets/js/334.afa60f94.js"><link rel="prefetch" href="/assets/js/335.b344d7e4.js"><link rel="prefetch" href="/assets/js/336.77a8146c.js"><link rel="prefetch" href="/assets/js/337.ddea3cc5.js"><link rel="prefetch" href="/assets/js/338.2b25456e.js"><link rel="prefetch" href="/assets/js/339.4b17d4a0.js"><link rel="prefetch" href="/assets/js/34.08146269.js"><link rel="prefetch" href="/assets/js/340.8e4f09f7.js"><link rel="prefetch" href="/assets/js/341.f76d4af9.js"><link rel="prefetch" href="/assets/js/342.4e875c1d.js"><link rel="prefetch" href="/assets/js/343.e0564ba9.js"><link rel="prefetch" href="/assets/js/344.b807ba8f.js"><link rel="prefetch" href="/assets/js/345.525a188e.js"><link rel="prefetch" href="/assets/js/346.16523625.js"><link rel="prefetch" href="/assets/js/347.4a73e901.js"><link rel="prefetch" href="/assets/js/348.fcb3d90a.js"><link rel="prefetch" href="/assets/js/349.c3e4d761.js"><link rel="prefetch" href="/assets/js/35.064f761a.js"><link rel="prefetch" href="/assets/js/350.6d749dfa.js"><link rel="prefetch" href="/assets/js/351.648aad9d.js"><link rel="prefetch" href="/assets/js/352.5578cbca.js"><link rel="prefetch" href="/assets/js/353.5441b7ed.js"><link rel="prefetch" href="/assets/js/354.4e81ff6a.js"><link rel="prefetch" href="/assets/js/355.76d31fb1.js"><link rel="prefetch" href="/assets/js/356.ad6cfd65.js"><link rel="prefetch" href="/assets/js/357.1f94df5a.js"><link rel="prefetch" href="/assets/js/358.b1f70cd0.js"><link rel="prefetch" href="/assets/js/359.d857ff6d.js"><link rel="prefetch" href="/assets/js/36.d3649a54.js"><link rel="prefetch" href="/assets/js/360.9faa464d.js"><link rel="prefetch" href="/assets/js/37.31591d6b.js"><link rel="prefetch" href="/assets/js/38.c2a7c2b3.js"><link rel="prefetch" href="/assets/js/39.c35969ad.js"><link rel="prefetch" href="/assets/js/4.ceb57393.js"><link rel="prefetch" href="/assets/js/40.fde24080.js"><link rel="prefetch" href="/assets/js/41.141bfb11.js"><link rel="prefetch" href="/assets/js/42.661a704f.js"><link rel="prefetch" href="/assets/js/43.e8e7c08f.js"><link rel="prefetch" href="/assets/js/44.a22a7626.js"><link rel="prefetch" href="/assets/js/45.b785a95f.js"><link rel="prefetch" href="/assets/js/46.fea4bf52.js"><link rel="prefetch" href="/assets/js/47.c0002f40.js"><link rel="prefetch" href="/assets/js/48.933c25e3.js"><link rel="prefetch" href="/assets/js/49.f168b833.js"><link rel="prefetch" href="/assets/js/5.617fee4e.js"><link rel="prefetch" href="/assets/js/50.e6c97108.js"><link rel="prefetch" href="/assets/js/51.3f2acaf0.js"><link rel="prefetch" href="/assets/js/52.273de376.js"><link rel="prefetch" href="/assets/js/53.52f32de3.js"><link rel="prefetch" href="/assets/js/54.0f962c6d.js"><link rel="prefetch" href="/assets/js/55.b55bfcc4.js"><link rel="prefetch" href="/assets/js/56.37af9f2f.js"><link rel="prefetch" href="/assets/js/57.3a544698.js"><link rel="prefetch" href="/assets/js/58.fd145d72.js"><link rel="prefetch" href="/assets/js/59.3c443f18.js"><link rel="prefetch" href="/assets/js/6.34fd071d.js"><link rel="prefetch" href="/assets/js/60.ad3d0604.js"><link rel="prefetch" href="/assets/js/61.fe08cc5d.js"><link rel="prefetch" href="/assets/js/62.43690e4a.js"><link rel="prefetch" href="/assets/js/63.a13a101c.js"><link rel="prefetch" href="/assets/js/64.9ddaa147.js"><link rel="prefetch" href="/assets/js/65.318a54bb.js"><link rel="prefetch" href="/assets/js/66.d98390b6.js"><link rel="prefetch" href="/assets/js/67.9b008110.js"><link rel="prefetch" href="/assets/js/68.34026b32.js"><link rel="prefetch" href="/assets/js/69.966fcbd9.js"><link rel="prefetch" href="/assets/js/7.0e684a2e.js"><link rel="prefetch" href="/assets/js/70.17f869fc.js"><link rel="prefetch" href="/assets/js/71.6ae36d29.js"><link rel="prefetch" href="/assets/js/72.fc49a64b.js"><link rel="prefetch" href="/assets/js/73.99378f1d.js"><link rel="prefetch" href="/assets/js/74.a3276887.js"><link rel="prefetch" href="/assets/js/75.8c4763b7.js"><link rel="prefetch" href="/assets/js/76.08d4f0a9.js"><link rel="prefetch" href="/assets/js/77.d56319ee.js"><link rel="prefetch" href="/assets/js/78.366fe4a4.js"><link rel="prefetch" href="/assets/js/79.b9e7876c.js"><link rel="prefetch" href="/assets/js/8.df23423e.js"><link rel="prefetch" href="/assets/js/80.959fe5ef.js"><link rel="prefetch" href="/assets/js/81.e34a3d00.js"><link rel="prefetch" href="/assets/js/82.ee60c495.js"><link rel="prefetch" href="/assets/js/83.b708ed63.js"><link rel="prefetch" href="/assets/js/84.3783ec11.js"><link rel="prefetch" href="/assets/js/85.f274786e.js"><link rel="prefetch" href="/assets/js/86.ae8b4a73.js"><link rel="prefetch" href="/assets/js/87.f927f197.js"><link rel="prefetch" href="/assets/js/88.f78d33ae.js"><link rel="prefetch" href="/assets/js/89.3f365acc.js"><link rel="prefetch" href="/assets/js/9.a222ffe7.js"><link rel="prefetch" href="/assets/js/90.b939873b.js"><link rel="prefetch" href="/assets/js/91.0c0d508b.js"><link rel="prefetch" href="/assets/js/92.adc97b86.js"><link rel="prefetch" href="/assets/js/93.a7457892.js"><link rel="prefetch" href="/assets/js/94.bacf90be.js"><link rel="prefetch" href="/assets/js/95.13af2e93.js"><link rel="prefetch" href="/assets/js/96.d204e708.js"><link rel="prefetch" href="/assets/js/97.808248e8.js"><link rel="prefetch" href="/assets/js/98.61669cf7.js"><link rel="prefetch" href="/assets/js/99.7df3029d.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.fc148476.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu have-body-img"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/img/logo.png" alt="Cactusli blog" class="logo"> <span class="site-name can-hide">Cactusli blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端" class="dropdown-title"><a href="/Java/" class="link-title">后端</a> <span class="title" style="display:none;">后端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>后端技术源码</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/pages/f1dad0/" class="nav-link">SpringBoot2核心技术✨</a></li><li class="dropdown-subitem"><a href="/pages/4b362a/" class="nav-link">SpringCloud微服务权限系统搭建✨</a></li><li class="dropdown-subitem"><a href="/pages/920e2b/" class="nav-link">搭建rpc框架</a></li></ul></li><li class="dropdown-item"><h4>开发环境配置</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/pages/d2639c/" class="nav-link">负载均衡和web服务</a></li></ul></li><li class="dropdown-item"><h4>阅读源码系列</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/pages/32e50d/" class="nav-link">Spring Boot</a></li><li class="dropdown-subitem"><a href="/pages/d065c4/" class="nav-link">Netty</a></li><li class="dropdown-subitem"><a href="/pages/4d3c7f/" class="nav-link">Dubbo</a></li></ul></li><li class="dropdown-item"><h4>学习笔记</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/note/SpringBoot/" class="nav-link">《SpringBoot教程》</a></li><li class="dropdown-subitem"><a href="/note/Docker/" class="nav-link">《Docker教程》</a></li><li class="dropdown-subitem"><a href="/note/Kubernetes/" class="nav-link">《Kubernetes教程》</a></li><li class="dropdown-subitem"><a href="/note/SpringCloud-febs/" class="nav-link">《SpringCloud微服务权限系统搭建》</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><a href="/web/" class="link-title">前端</a> <span class="title" style="display:none;">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>前端文章</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/pages/8143cc480faf9a11/" class="nav-link">JavaScript</a></li></ul></li><li class="dropdown-item"><h4>学习笔记</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/note/javascript/" class="nav-link">《JavaScript教程》</a></li><li class="dropdown-subitem"><a href="/note/js/" class="nav-link">《JavaScript高级程序设计》</a></li><li class="dropdown-subitem"><a href="/note/es6/" class="nav-link">《ES6 教程》</a></li><li class="dropdown-subitem"><a href="/note/vue/" class="nav-link">《Vue》</a></li><li class="dropdown-subitem"><a href="/note/react/" class="nav-link">《React》</a></li><li class="dropdown-subitem"><a href="/note/typescript-axios/" class="nav-link">《TypeScript 从零实现 axios》</a></li><li class="dropdown-subitem"><a href="/note/git/" class="nav-link">《Git》</a></li><li class="dropdown-subitem"><a href="/pages/51afd6/" class="nav-link">TypeScript</a></li><li class="dropdown-subitem"><a href="/pages/4643cd/" class="nav-link">JS设计模式总结</a></li></ul></li><li class="dropdown-item"><h4>页面</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/pages/8309a5b876fc95e3/" class="nav-link">HTML</a></li><li class="dropdown-subitem"><a href="/pages/0a83b083bdf257cb/" class="nav-link">CSS</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="技术" class="dropdown-title"><a href="/technology/" class="link-title">技术</a> <span class="title" style="display:none;">技术</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/9a7ee40fc232253e/" class="nav-link">技术文档</a></li><li class="dropdown-item"><!----> <a href="/pages/4c778760be26d8b3/" class="nav-link">GitHub技巧</a></li><li class="dropdown-item"><!----> <a href="/pages/117708e0af7f0bd9/" class="nav-link">Nodejs</a></li><li class="dropdown-item"><!----> <a href="/pages/41f87d890d0a02af/" class="nav-link">博客搭建</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="更多" class="dropdown-title"><a href="/more/" class="link-title">更多</a> <span class="title" style="display:none;">更多</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/f2a556/" class="nav-link">学习</a></li><li class="dropdown-item"><!----> <a href="/pages/aea6571b7a8bae86/" class="nav-link">面试</a></li><li class="dropdown-item"><!----> <a href="/pages/2d615df9a36a98ed/" class="nav-link">心情杂货</a></li><li class="dropdown-item"><!----> <a href="/pages/baaa02/" class="nav-link">实用技巧</a></li><li class="dropdown-item"><!----> <a href="/friends/" class="nav-link">友情链接</a></li></ul></div></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div><div class="nav-item"><a href="/pages/beb6c0bd8a66cea6/" class="nav-link">收藏</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="索引" class="dropdown-title"><a href="/archives/" class="link-title">索引</a> <span class="title" style="display:none;">索引</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/" class="nav-link">分类</a></li><li class="dropdown-item"><!----> <a href="/tags/" class="nav-link">标签</a></li><li class="dropdown-item"><!----> <a href="/archives/" class="nav-link">归档</a></li></ul></div></div> <a href="https://github.com/lixuanfengs/cactus-vuepress-sc" target="_blank" rel="noopener noreferrer" class="repo-link">
+      GitHub
+      <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><div class="blogger"><img src="https://cactusmall.oss-cn-beijing.aliyuncs.com/cactusli/cactusxx.jpg"> <div class="blogger-info"><h3>Cactus Li</h3> <span>后端小学生</span></div></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="后端" class="dropdown-title"><a href="/Java/" class="link-title">后端</a> <span class="title" style="display:none;">后端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>后端技术源码</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/pages/f1dad0/" class="nav-link">SpringBoot2核心技术✨</a></li><li class="dropdown-subitem"><a href="/pages/4b362a/" class="nav-link">SpringCloud微服务权限系统搭建✨</a></li><li class="dropdown-subitem"><a href="/pages/920e2b/" class="nav-link">搭建rpc框架</a></li></ul></li><li class="dropdown-item"><h4>开发环境配置</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/pages/d2639c/" class="nav-link">负载均衡和web服务</a></li></ul></li><li class="dropdown-item"><h4>阅读源码系列</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/pages/32e50d/" class="nav-link">Spring Boot</a></li><li class="dropdown-subitem"><a href="/pages/d065c4/" class="nav-link">Netty</a></li><li class="dropdown-subitem"><a href="/pages/4d3c7f/" class="nav-link">Dubbo</a></li></ul></li><li class="dropdown-item"><h4>学习笔记</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/note/SpringBoot/" class="nav-link">《SpringBoot教程》</a></li><li class="dropdown-subitem"><a href="/note/Docker/" class="nav-link">《Docker教程》</a></li><li class="dropdown-subitem"><a href="/note/Kubernetes/" class="nav-link">《Kubernetes教程》</a></li><li class="dropdown-subitem"><a href="/note/SpringCloud-febs/" class="nav-link">《SpringCloud微服务权限系统搭建》</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><a href="/web/" class="link-title">前端</a> <span class="title" style="display:none;">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>前端文章</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/pages/8143cc480faf9a11/" class="nav-link">JavaScript</a></li></ul></li><li class="dropdown-item"><h4>学习笔记</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/note/javascript/" class="nav-link">《JavaScript教程》</a></li><li class="dropdown-subitem"><a href="/note/js/" class="nav-link">《JavaScript高级程序设计》</a></li><li class="dropdown-subitem"><a href="/note/es6/" class="nav-link">《ES6 教程》</a></li><li class="dropdown-subitem"><a href="/note/vue/" class="nav-link">《Vue》</a></li><li class="dropdown-subitem"><a href="/note/react/" class="nav-link">《React》</a></li><li class="dropdown-subitem"><a href="/note/typescript-axios/" class="nav-link">《TypeScript 从零实现 axios》</a></li><li class="dropdown-subitem"><a href="/note/git/" class="nav-link">《Git》</a></li><li class="dropdown-subitem"><a href="/pages/51afd6/" class="nav-link">TypeScript</a></li><li class="dropdown-subitem"><a href="/pages/4643cd/" class="nav-link">JS设计模式总结</a></li></ul></li><li class="dropdown-item"><h4>页面</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/pages/8309a5b876fc95e3/" class="nav-link">HTML</a></li><li class="dropdown-subitem"><a href="/pages/0a83b083bdf257cb/" class="nav-link">CSS</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="技术" class="dropdown-title"><a href="/technology/" class="link-title">技术</a> <span class="title" style="display:none;">技术</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/9a7ee40fc232253e/" class="nav-link">技术文档</a></li><li class="dropdown-item"><!----> <a href="/pages/4c778760be26d8b3/" class="nav-link">GitHub技巧</a></li><li class="dropdown-item"><!----> <a href="/pages/117708e0af7f0bd9/" class="nav-link">Nodejs</a></li><li class="dropdown-item"><!----> <a href="/pages/41f87d890d0a02af/" class="nav-link">博客搭建</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="更多" class="dropdown-title"><a href="/more/" class="link-title">更多</a> <span class="title" style="display:none;">更多</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/f2a556/" class="nav-link">学习</a></li><li class="dropdown-item"><!----> <a href="/pages/aea6571b7a8bae86/" class="nav-link">面试</a></li><li class="dropdown-item"><!----> <a href="/pages/2d615df9a36a98ed/" class="nav-link">心情杂货</a></li><li class="dropdown-item"><!----> <a href="/pages/baaa02/" class="nav-link">实用技巧</a></li><li class="dropdown-item"><!----> <a href="/friends/" class="nav-link">友情链接</a></li></ul></div></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div><div class="nav-item"><a href="/pages/beb6c0bd8a66cea6/" class="nav-link">收藏</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="索引" class="dropdown-title"><a href="/archives/" class="link-title">索引</a> <span class="title" style="display:none;">索引</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/" class="nav-link">分类</a></li><li class="dropdown-item"><!----> <a href="/tags/" class="nav-link">标签</a></li><li class="dropdown-item"><!----> <a href="/archives/" class="nav-link">归档</a></li></ul></div></div> <a href="https://github.com/lixuanfengs/cactus-vuepress-sc" target="_blank" rel="noopener noreferrer" class="repo-link">
+      GitHub
+      <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>基础框架搭建</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>架构完善</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>完善登录流程</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>整合Swagger</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>整合第三方服务</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端系统介绍</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>微服务部署</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>微服务进阶</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>K8S集群部署</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>分布式事务</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/pages/c701fe/" class="sidebar-link">分布式架构事务挑战🧡</a></li><li><a href="/pages/020840/" class="sidebar-link">分布式事务解决方案🥑</a></li><li><a href="/pages/f8eaa1/" class="sidebar-link">基于消息中间件RocketMQ方案（一）🥒</a></li><li><a href="/pages/a7a1b7/" aria-current="page" class="active sidebar-link">4 基于消息中间件RocketMQ方案（二）🍌</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level2"><a href="/pages/a7a1b7/#微服务引入rocketmq" class="sidebar-link">微服务引入RocketMQ</a></li><li class="sidebar-sub-header level2"><a href="/pages/a7a1b7/#分布式事务问题" class="sidebar-link">分布式事务问题</a></li><li class="sidebar-sub-header level2"><a href="/pages/a7a1b7/#解决分布式事务问题" class="sidebar-link">解决分布式事务问题</a></li><li class="sidebar-sub-header level2"><a href="/pages/a7a1b7/#总结" class="sidebar-link">总结</a></li></ul></li><li><a href="/pages/8c9029/" class="sidebar-link">基于TX-LCN方案🌍</a></li><li><a href="/pages/330793/" class="sidebar-link">基于阿里Seata方案🌱</a></li></ul></section></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="articleInfo-wrap" data-v-06225672><div class="articleInfo" data-v-06225672><ul class="breadcrumbs" data-v-06225672><li data-v-06225672><a href="/" title="首页" class="iconfont icon-home router-link-active" data-v-06225672></a></li> <li data-v-06225672><a href="/note/SpringCloud-febs/#《SpringCloud微服务权限系统搭建》笔记" data-v-06225672>《SpringCloud微服务权限系统搭建》笔记</a></li><li data-v-06225672><a href="/note/SpringCloud-febs/#分布式事务" data-v-06225672>分布式事务</a></li></ul> <div class="info" data-v-06225672><div title="作者" class="author iconfont icon-touxiang" data-v-06225672><a href="https://github.com/lixuanfengs" target="_blank" title="作者" class="beLink" data-v-06225672>cactusli</a></div> <div title="创建时间" class="date iconfont icon-riqi" data-v-06225672><a href="javascript:;" data-v-06225672>2022-05-10</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-title">目录</div> <div class="right-menu-content"></div></div></div> <h1><!---->4 基于消息中间件RocketMQ方案（二）🍌<!----></h1>  <div class="theme-vdoing-content content__default"><h2 id="微服务引入rocketmq"><a href="#微服务引入rocketmq" class="header-anchor">#</a> 微服务引入RocketMQ</h2> <p>在上一节源码的基础上，往febs-server的pom中添加RocketMQ依赖：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.rocketmq&lt;/groupId&gt;
+    &lt;artifactId&gt;rocketmq-spring-boot-starter&lt;/artifactId&gt;
+    &lt;version&gt;2.0.4&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>接着在Nacos控制台上修改febs-server-system.yaml，添加RocketMQ配置:</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>rocketmq:
+  name-server: ${rocketmq.url}:9876
+  producer:
+    group: test-group
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>上面配置中，我们使用<code>${rocketmq.url}</code>变量表示RocketMQ的地址，所以需要在IDEA的环境变量中添加<code>rocketmq.url=127.0.0.1</code>配置。</p> <p>接着在Nacos的febs-server-test.yaml配置文件中也添加RocketMQ配置：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>rocketmq:
+  name-server: ${rocketmq.url}:9876
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>同样的，别忘了在IDEA的环境变量中添加<code>rocketmq.url=127.0.0.1</code>。</p> <p>接下来我们要实现如下所示的流程：</p> <p><img src="https://s2.ax1x.com/2019/12/30/lMqZGj.png" alt="669.png"></p> <p>febs-server-system往RocketMQ发送消息，febs-server-test消费这条消息，例子采用购物流程作为演示。</p> <p>在febs_cloud_base数据库中添加购物日志表t_trade_log：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>CREATE TABLE `t_trade_log`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `goods_id` int(11) NOT NULL COMMENT '商品ID',
+  `goods_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商品名称',
+  `status` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '状态',
+  `create_time` datetime(0) NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p>在febs-common的cc.mrbird.febs.common.entity.system包下新建TradeLog实体类：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>@Data
+@TableName(&quot;t_trade_log&quot;)
+public class TradeLog implements Serializable {
+
+    private static final long serialVersionUID = 3902838426348137002L;
+
+    @TableId(value = &quot;ID&quot;, type = IdType.AUTO)
+    private Long id;
+
+    @TableField(&quot;GOODS_ID&quot;)
+    private String goodsId;
+    @TableField(&quot;GOODS_NAME&quot;)
+    private String goodsName;
+    @TableField(&quot;STATUS&quot;)
+    private String status;
+    @TableField(&quot;CREATE_TIME&quot;)
+    private Date createTime;
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><p>接着在febs-server-test的cc.mrbird.febs.server.test.mapper和febs-server-system的cc.mrbird.febs.server.system.mapper包下新建TradeLogMapper接口：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>public interface TradeLogMapper extends BaseMapper&lt;TradeLog&gt; {
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>在febs-server-system的cc.mrbird.febs.server.system.service下新建ITradeLogService接口：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>public interface ITradeLogService extends IService&lt;TradeLog&gt; {
+    void orderAndPay(TradeLog tradeLog);
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>接口包含一个下单支付抽象方法。</p> <p>在该目录下的impl包下新建该接口实现类TradeLogServiceImpl：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>@Slf4j
+@Service(&quot;tradeLogService&quot;)
+public class TradeLogServiceImpl extends ServiceImpl&lt;TradeLogMapper, TradeLog&gt; implements ITradeLogService {
+
+    @Autowired
+    private RocketMQTemplate rocketMQTemplate;
+
+    @Override
+    @Transactional
+    public void orderAndPay(TradeLog tradeLog) {
+        tradeLog.setCreateTime(new Date());
+        tradeLog.setStatus(&quot;下单并支付成功&quot;);
+
+        // 保存支付日志
+        this.save(tradeLog);
+        log.info(&quot;用户已经下单并支付成功商品ID为{}，名称为{}的商品&quot;, tradeLog.getGoodsId(), tradeLog.getGoodsName());
+
+        // 往RocketMQ发送支付成功消息
+        this.rocketMQTemplate.convertAndSend(&quot;pay-success&quot;, tradeLog);
+    }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br></div></div><p>RocketMQTemplate的<code>convertAndSend</code>的第一个参数相当于topic，消息主题，第二个参数为payload，即消息内容。</p> <p>接着在febs-server-system的cc.mrbird.febs.server.system.controller包下的TestController类下新增如下方法：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>@Slf4j
+@RestController
+public class TestController {
+
+    @Autowired
+    private ITradeLogService tradeLogService;
+
+   ...
+
+    @GetMapping(&quot;pay&quot;)
+    public void orderAndPay(TradeLog tradeLog) {
+        this.tradeLogService.orderAndPay(tradeLog);
+    }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><p>简单起见，我没有对TradeLog进行格式校验。</p> <p>MQ消息发送方的工作完成后，接着在febs-server-test中添加MQ消息消费相关代码。</p> <p>在febs-server-test的cc.mrbird.febs.server.test.service目录下新建ITradeLogService接口：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>public interface ITradeLogService extends IService&lt;TradeLog&gt; {
+    void packageAndSend(TradeLog tradeLog);
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>接口包含一个打包配送抽象方法。</p> <p>接着在该目录下新建impl包，然后在该包下新建该接口实现类TradeLogServiceImpl：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>@Slf4j
+@Service(&quot;tradeLogService&quot;)
+public class TradeLogServiceImpl extends ServiceImpl&lt;TradeLogMapper, TradeLog&gt; implements ITradeLogService {
+
+    @Override
+    @Transactional
+    public void packageAndSend(TradeLog tradeLog) {
+        TradeLog tl = new TradeLog();
+        tl.setGoodsId(tradeLog.getGoodsId());
+        tl.setGoodsName(tradeLog.getGoodsName());
+        tl.setStatus(&quot;打包完毕，开始物流配送！&quot;);
+        tl.setCreateTime(new Date());
+
+        this.save(tl);
+        log.info(&quot;商品ID为{}，名称为{}的商品打包完毕，开始物流配送&quot;, tradeLog.getGoodsId(), tradeLog.getGoodsName());
+    }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><p>Service定义完后，还需要添加个RocketMQ消息监听器。在febs-server-test的cc.mrbird.febs.server.test目录下新建listener包，在该包下新建MyRocketMQListener：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>@Slf4j
+@Component
+@RocketMQMessageListener(consumerGroup = &quot;test-group&quot;, topic = &quot;pay-success&quot;)
+public class MyRocketMQListener implements RocketMQListener&lt;TradeLog&gt; {
+
+    @Autowired
+    private ITradeLogService tradeLogService;
+
+    @Override
+    public void onMessage(TradeLog tradeLog) {
+        log.info(&quot;监听到用户已经下单并支付成功ID为{}，名称为{}的商品&quot;, tradeLog.getGoodsId(), tradeLog.getGoodsName());
+        this.tradeLogService.packageAndSend(tradeLog);
+    }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><p>该类实现了RocketMQListener接口，泛型为消息发送方的payload类型。<code>@RocketMQMessageListener</code>注解的<code>topic</code>必须和消息发送方的topic一致，即在febs-server-system中指定的<code>pay-success</code>。</p> <p>启动febs-auth、febs-gateway、febs-server-system和febs-server-test服务，然后使用Postman发送测试请求（请求头部需要添加令牌，这里就不演示令牌获取了，前面章节介绍许多次了）：</p> <p><img src="https://s2.ax1x.com/2019/12/30/lQA259.png" alt="670.png"></p> <p>请求成功，查看febs-server-system日志：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>2019-12-30 16:38:50 INFO  [FEBS-Server-System,,,] http-nio-8201-exec-1 p6spy 2019-12-30 16:38:50 | 耗时 3 ms | SQL 语句：
+INSERT INTO t_trade_log (CREATE_TIME, GOODS_ID, GOODS_NAME, STATUS) VALUES ('2019-12-30T16:38:50.018+0800', '1', 'Macbook Pro 16in', '下单并支付成功');
+2019-12-30 16:38:50 INFO  [FEBS-Server-System,,,] http-nio-8201-exec-1 cc.mrbird.febs.server.system.service.impl.TradeLogServiceImpl 用户已经下单并支付成功商品ID为1，名称为Macbook Pro 16in的商品
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>febs-server-test日志：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>2019-12-30 16:38:53 INFO  [FEBS-Server-Test,,,] ConsumeMessageThread_1 cc.mrbird.febs.server.test.listener.MyRocketMQListener 监听到用户已经下单并支付成功ID为1，名称为Macbook Pro 16in的商品
+2019-12-30 16:38:53 INFO  [FEBS-Server-Test,,,] ConsumeMessageThread_1 cc.mrbird.febs.server.test.service.impl.TradeLogServiceImpl 商品ID为1，名称为Macbook Pro 16in的商品打包完毕，开始物流配送
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>查看数据库数据：</p> <p><img src="https://s2.ax1x.com/2019/12/30/lQEKZF.png" alt="671.png"></p> <p>可看到整个流程是没问题的。</p> <h2 id="分布式事务问题"><a href="#分布式事务问题" class="header-anchor">#</a> 分布式事务问题</h2> <p>在正常情况下，上述流程没有任何问题。但是实际业务中，可能消息发送方发完MQ消息后，后续处理抛了异常导致事务回滚了，但是MQ消息消费端还是能够检测到这条消息并消费，这就引起了分布式事务问题。</p> <p>比如，在febs-server-system的TradeLogServiceImpl的orderAndPay方法中抛出一个异常：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>@Slf4j
+@Service(&quot;tradeLogService&quot;)
+public class TradeLogServiceImpl extends ServiceImpl&lt;TradeLogMapper, TradeLog&gt; implements ITradeLogService {
+
+    @Autowired
+    private RocketMQTemplate rocketMQTemplate;
+
+    @Override
+    @Transactional
+    public void orderAndPay(TradeLog tradeLog) {
+        tradeLog.setCreateTime(new Date());
+        tradeLog.setStatus(&quot;下单并支付成功&quot;);
+
+        // 保存支付日志
+        this.save(tradeLog);
+        log.info(&quot;用户已经下单并支付成功商品ID为{}，名称为{}的商品&quot;, tradeLog.getGoodsId(), tradeLog.getGoodsName());
+
+        // 往RocketMQ发送支付成功消息
+        this.rocketMQTemplate.convertAndSend(&quot;pay-success&quot;, tradeLog);
+
+        throw new RuntimeException(&quot;抛个异常&quot;);
+    }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br></div></div><p>重启febs-server-system，再次调用这个方法（参数改改）：</p> <p><img src="https://s2.ax1x.com/2019/12/30/lQZMC9.png" alt="672.png"></p> <p>可以看到，系统内部出异常了。从上面Service的逻辑来看，这个异常并不影响MQ消息的发送，但是会导致本地事务回滚。</p> <p>所以查看febs-server-test的日志，肯定会看到消费了这条消息的相关日志:</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>2019-12-30 16:47:33 INFO  [FEBS-Server-Test,,,] ConsumeMessageThread_2 cc.mrbird.febs.server.test.listener.MyRocketMQListener 监听到用户已经下单并支付成功ID为2，名称为Iphone 11 Pro Max的商品
+2019-12-30 16:47:33 INFO  [FEBS-Server-Test,,,] ConsumeMessageThread_2 cc.mrbird.febs.server.test.service.impl.TradeLogServiceImpl 商品ID为2，名称为Iphone 11 Pro Max的商品打包完毕，开始物流配送
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>查看数据库数据：</p> <p><img src="https://s2.ax1x.com/2019/12/30/lQeBi4.png" alt="673.png"></p> <p>可以看到，iPhone 11 Pro并没有下单成功，却已经开始打包配送了，这就引起了分布式事务问题。要解决这个问题，我们需要确保只有当下单和支付确定成功后，才开始打包配送。要完成这个过程，我们可以借助RocketMQ的事务消息来解决。</p> <h2 id="解决分布式事务问题"><a href="#解决分布式事务问题" class="header-anchor">#</a> 解决分布式事务问题</h2> <p>使用RocketMQ事务消息解决上述问题的实现过程可以参考下面这张图来完成：</p> <p><img src="https://s2.ax1x.com/2019/12/30/lMlhss.png" alt="662.png"></p> <p><strong>第1步和第2步：向RocketMQ发送半消息（就是事务消息）</strong>：</p> <p>修改febs-server-service的ITradeLogService接口，添加一个pay抽象方法：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>public interface ITradeLogService extends IService&lt;TradeLog&gt; {
+
+    void orderAndPay(TradeLog tradeLog);
+
+    void pay(TradeLog tradeLog);
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>修改其实现类TradeLogServiceImpl：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>@Slf4j
+@Service(&quot;tradeLogService&quot;)
+public class TradeLogServiceImpl extends ServiceImpl&lt;TradeLogMapper, TradeLog&gt; implements ITradeLogService {
+
+    @Autowired
+    private RocketMQTemplate rocketMQTemplate;
+
+    @Override
+    public void orderAndPay(TradeLog tradeLog) {
+        // 检测库存
+        log.info(&quot;检测商品Id为{}，名称为{}的商品库存，库存充足&quot;,tradeLog.getGoodsId(),tradeLog.getGoodsName());
+
+        String transactionId = UUID.randomUUID().toString();
+        // 往RocketMQ发送事务消息
+        // this.rocketMQTemplate.convertAndSend(&quot;pay-success&quot;, tradeLog);
+        this.rocketMQTemplate.sendMessageInTransaction(
+                &quot;pay-success-group&quot;, // 事务消息分组，组名
+                &quot;pay-success&quot;, // 事务消息topic
+                MessageBuilder.withPayload(tradeLog)
+                        .setHeader(RocketMQHeaders.TRANSACTION_ID, transactionId)
+                        .build(), // 消息
+                tradeLog // 额外参数，供后续回调使用
+        );
+    }
+
+
+    @Override
+    @Transactional
+    public void pay(TradeLog tradeLog) {
+        tradeLog.setCreateTime(new Date());
+        tradeLog.setStatus(&quot;下单并支付成功&quot;);
+        // 保存支付日志
+        this.save(tradeLog);
+        log.info(&quot;用户已经下单并支付成功商品ID为{}，名称为{}的商品&quot;, tradeLog.getGoodsId(), tradeLog.getGoodsName());
+    }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br></div></div><p>可以看到，在orderAndPay方法中，我们通过RocketMQTemplate的sendMessageInTransaction方法发送了一条半消息，但是并没有实际操作数据库，数据库操作过程抽出来放到了pay方法中。</p> <p>半消息的特点是，在RocketMQ没有确认本地事务状态为COMMIT之前，消息的消费端并不会感知到这条消息，自然不会去消费。</p> <p>那么我们要在什么地方调用TradeLogServiceImpl的pay方法呢？答案是在RocketMQLocalTransactionListener接口的实现类方法中。</p> <p><strong>第3步和第4步，执行本地事务，并且向RocketMQ发送Commit或者Rollback</strong>。</p> <p>在febs-server-system的cc.mrbird.febs.server.system目录下新建listener包，然后在该包下新建RocketMQLocalTransactionListener的实现类MyRocketMQListener：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>@Slf4j
+@Component
+@RocketMQTransactionListener(txProducerGroup = &quot;pay-success-group&quot;)
+public class MyRocketMQListener implements RocketMQLocalTransactionListener {
+
+    @Autowired
+    private ITradeLogService tradeLogService;
+
+    /**
+     * 执行本地事务
+     * @param message 消息
+     * @param o 额外参数
+     * @return RocketMQ事务状态
+     */
+    @Override
+    public RocketMQLocalTransactionState executeLocalTransaction(Message message, Object o) {
+        MessageHeaders headers = message.getHeaders();
+        String transicationId = (String) headers.get(RocketMQHeaders.TRANSACTION_ID);
+
+        try {
+            TradeLog tradeLog = (TradeLog) o;
+            this.tradeLogService.pay(tradeLog); // 对应图中第3步，执行本地事务
+            log.info(&quot;本地事务执行成功，往RocketMQ发送COMMIT&quot;);
+            return RocketMQLocalTransactionState.COMMIT; // 对应图中第4步，COMMIT，半消息经过COMMIT后，消息消费端就可以消费这条消息了
+        } catch (Exception e){
+            log.info(&quot;本地事务回滚，往RocketMQ发送ROLLBACK&quot;, e);
+            return RocketMQLocalTransactionState.ROLLBACK; // 对应途中第4步，ROLLBACK
+        }
+    }
+
+    /**
+     * RocketMQ回查本地事务状态
+     * @param message 消息
+     * @return RocketMQ事务状态
+     */
+    @Override
+    public RocketMQLocalTransactionState checkLocalTransaction(Message message) {
+        MessageHeaders headers = message.getHeaders();
+        String transicationId = (String) headers.get(RocketMQHeaders.TRANSACTION_ID);
+        log.info(&quot;RocketMQ事务状态回查&quot;);
+        // 这个过程对应图中第5步
+        // TODO
+        return null;
+    }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br></div></div><p>类上使用<code>@RocketMQTransactionListener</code>注解标注，注解属性<code>txProducerGroup</code>值和前面发送的事务消息分组组名必须一致。</p> <p>MyRocketMQListener实现了RocketMQLocalTransactionListener接口的<code>executeLocalTransaction</code>和<code>checkLocalTransaction</code>方法。顾名思义，<code>executeLocalTransaction</code>用于指定执行本地事务逻辑，<code>checkLocalTransaction</code>方法用于RocketMQ回查本地事务状态。</p> <p>当监听器对应的半消息发送成功后，便会接着执行<code>executeLocalTransaction</code>方法；那么什么情况下RocketMQ会执行事务回查呢，答案是，当本地事务已经提交了，但是RocketMQ并未收到COMMIT确认时。就好比程序执行到上面<code>executeLocalTransaction</code>方法<code>log.info(&quot;本地事务执行成功，往RocketMQ发送COMMIT&quot;)</code>这一行代码，但还未来得及返回COMMIT状态时，网络突然中断或者程序故障，这种情况下，当网络和应用恢复正常后，RocketMQ会执行本地事务回查操作。</p> <p>那么问题来了，我们要怎么回查本地的事务状态呢，通常的做法是创建一张事务日志表，在本地事务执行成功后，往本地事务日志表中也插入一条事务日志。事务回查时，只要通过transicationId能够找到对应的日志，则说明本地事务执行成功，否则认为执行失败。定义一张事务日志表：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>CREATE TABLE `t_transaction_log`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `transaction_Id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '事务id',
+  `remark` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '备注',
+  PRIMARY KEY (`id`, `transaction_Id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>在febs-common的cc.mrbird.febs.common.entity.system模块下新建TransactionLog类：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>@Data
+@TableName(&quot;t_transaction_log&quot;)
+public class TransactionLog implements Serializable {
+
+    private static final long serialVersionUID = 1268216478456291093L;
+
+    @TableId(value = &quot;ID&quot;, type = IdType.AUTO)
+    private Long id;
+    @TableField(&quot;TRANSACTION_ID&quot;)
+    private String transactionId;
+    @TableField(&quot;REMARK&quot;)
+    private String remark;
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><p>然后在febs-server-system的cc.mrbird.febs.server.system.mapper下新建TransactionLogMapper：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>public interface TransactionLogMapper extends BaseMapper&lt;TransactionLog&gt; {
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>方便起见，我就不再创建TransactionLog的Service层了。修改febs-server-system模块的ITradeLogService接口：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>public interface ITradeLogService extends IService&lt;TradeLog&gt; {
+
+    void orderAndPay(TradeLog tradeLog);
+
+    void pay(TradeLog tradeLog, String transactionId);
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>修改其实现类TradeLogServiceImpl：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>@Slf4j
+@Service(&quot;tradeLogService&quot;)
+public class TradeLogServiceImpl extends ServiceImpl&lt;TradeLogMapper, TradeLog&gt; implements ITradeLogService {
+
+    @Autowired
+    private RocketMQTemplate rocketMQTemplate;
+    @Autowired
+    private TransactionLogMapper transactionLogMapper;
+
+    @Override
+    public void orderAndPay(TradeLog tradeLog) {
+
+        log.info(&quot;检测商品Id为{}，名称为{}的商品库存，库存充足&quot;, tradeLog.getGoodsId(), tradeLog.getGoodsName());
+
+        String transactionId = UUID.randomUUID().toString();
+        // 往RocketMQ发送事务消息
+        // this.rocketMQTemplate.convertAndSend(&quot;pay-success&quot;, tradeLog);
+        this.rocketMQTemplate.sendMessageInTransaction(
+                &quot;pay-success-group&quot;, // 事务消息分组，组名
+                &quot;pay-success&quot;, // 事务消息topic
+                MessageBuilder.withPayload(tradeLog)
+                        .setHeader(RocketMQHeaders.TRANSACTION_ID, transactionId)
+                        .build(), // 消息
+                tradeLog // 额外参数，供后续回调使用
+        );
+    }
+
+
+    @Override
+    @Transactional
+    public void pay(TradeLog tradeLog, String transactionId) {
+        tradeLog.setCreateTime(new Date());
+        tradeLog.setStatus(&quot;下单并支付成功&quot;);
+        // 保存支付日志
+        this.save(tradeLog);
+        log.info(&quot;用户已经下单并支付成功商品ID为{}，名称为{}的商品&quot;, tradeLog.getGoodsId(), tradeLog.getGoodsName());
+        // 记录事务日志
+        TransactionLog transactionLog = new TransactionLog();
+        transactionLog.setTransactionId(transactionId);
+        String remark = String.format(&quot;事务ID为%s的本地事务执行成功&quot;, transactionId);
+        transactionLog.setRemark(remark);
+        transactionLogMapper.insert(transactionLog);
+        log.info(&quot;事务ID为{}的本地事务执行成功&quot;, transactionId);
+    }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br></div></div><p>主要修改地方为，在pay方法中添加了事务日志记录操作。</p> <p>事务日志记录好了，接下来就得完善febs-server-system的MyRocketMQListener的事务回查方法checkLocalTransaction逻辑了：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>@Slf4j
+@Component
+@RocketMQTransactionListener(txProducerGroup = &quot;pay-success-group&quot;)
+public class MyRocketMQListener implements RocketMQLocalTransactionListener {
+
+    @Autowired
+    private ITradeLogService tradeLogService;
+    @Autowired
+    private TransactionLogMapper transactionLogMapper;
+
+    /**
+     * 执行本地事务
+     *
+     * @param message 消息
+     * @param o       额外参数
+     * @return RocketMQ事务状态
+     */
+    @Override
+    public RocketMQLocalTransactionState executeLocalTransaction(Message message, Object o) {
+        MessageHeaders headers = message.getHeaders();
+        String transicationId = (String) headers.get(RocketMQHeaders.TRANSACTION_ID);
+
+        try {
+            TradeLog tradeLog = (TradeLog) o;
+            this.tradeLogService.pay(tradeLog, transicationId); // 对应图中第3步，执行本地事务
+            log.info(&quot;本地事务执行成功，往RocketMQ发送COMMIT&quot;);
+            return RocketMQLocalTransactionState.COMMIT; // 对应图中第4步，COMMIT，半消息经过COMMIT后，消息消费端就可以消费这条消息了
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.info(&quot;本地事务回滚，往RocketMQ发送ROLLBACK&quot;, e);
+            return RocketMQLocalTransactionState.ROLLBACK; // 对应途中第4步，ROLLBACK
+        }
+    }
+
+    /**
+     * RocketMQ回查本地事务状态，这个过程对应图中第5步
+     *
+     * @param message 消息
+     * @return RocketMQ事务状态
+     */
+    @Override
+    public RocketMQLocalTransactionState checkLocalTransaction(Message message) {
+        MessageHeaders headers = message.getHeaders();
+        String transicationId = (String) headers.get(RocketMQHeaders.TRANSACTION_ID);
+        log.info(&quot;RocketMQ事务状态回查&quot;);
+        // 从数据库中根据事务Id查询对应的事务日志，对应图中第6步
+        TransactionLog transactionLog = transactionLogMapper.selectOne(
+                new LambdaQueryWrapper&lt;TransactionLog&gt;().eq(TransactionLog::getTransactionId, transicationId)
+        );
+        // 对应图中的第7步骤
+        return transactionLog != null ? RocketMQLocalTransactionState.COMMIT : RocketMQLocalTransactionState.ROLLBACK;
+    }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br></div></div><p>至此，上面图中的所有流程都完成了。重新启动febs-server-system模块，使用PostMan测试一波：</p> <p><img src="https://s2.ax1x.com/2019/12/30/lQyPjs.png" alt="675.png"></p> <p>查看febs-server-system日志:</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>2019-12-30 18:59:29 INFO  [FEBS-Server-System,,,] http-nio-8201-exec-1 cc.mrbird.febs.server.system.service.impl.TradeLogServiceImpl 检测商品Id为3，名称为iPad mini 5的商品库存，库存充足
+2019-12-30 18:59:30 INFO  [FEBS-Server-System,,,] http-nio-8201-exec-1 p6spy 2019-12-30 18:59:30 | 耗时 1 ms | SQL 语句：
+INSERT INTO t_trade_log (CREATE_TIME, GOODS_ID, GOODS_NAME, STATUS) VALUES ('2019-12-30T18:59:29.977+0800', '3', 'iPad mini 5', '下单并支付成功');
+2019-12-30 18:59:30 INFO  [FEBS-Server-System,,,] http-nio-8201-exec-1 cc.mrbird.febs.server.system.service.impl.TradeLogServiceImpl 用户已经下单并支付成功商品ID为3，名称为iPad mini 5的商品
+2019-12-30 18:59:30 INFO  [FEBS-Server-System,,,] http-nio-8201-exec-1 p6spy 2019-12-30 18:59:30 | 耗时 1 ms | SQL 语句：
+INSERT INTO t_transaction_log (REMARK, TRANSACTION_ID) VALUES ('事务ID为3090c2fc-0ab8-43e3-9667-2e98c1c036e8的本地事务执行成功', '3090c2fc-0ab8-43e3-9667-2e98c1c036e8');
+2019-12-30 18:59:30 INFO  [FEBS-Server-System,,,] http-nio-8201-exec-1 cc.mrbird.febs.server.system.service.impl.TradeLogServiceImpl 事务ID为3090c2fc-0ab8-43e3-9667-2e98c1c036e8的本地事务执行成功
+2019-12-30 18:59:30 INFO  [FEBS-Server-System,,,] http-nio-8201-exec-1 cc.mrbird.febs.server.system.listener.MyRocketMQListener 本地事务执行成功，往RocketMQ发送COMMIT
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>查看febs-server-test日志：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>2019-12-30 18:59:31 INFO  [FEBS-Server-Test,,,] ConsumeMessageThread_1 cc.mrbird.febs.server.test.listener.MyRocketMQListener 监听到用户已经下单并支付成功ID为3，名称为iPad mini 5的商品
+2019-12-30 18:59:31 INFO  [FEBS-Server-Test,,,] ConsumeMessageThread_1 cc.mrbird.febs.server.test.service.impl.TradeLogServiceImpl 商品ID为3，名称为iPad mini 5的商品打包完毕，开始物流配送
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>查看数据库：</p> <p><img src="https://s2.ax1x.com/2019/12/30/lQsz4S.png" alt="674.png"></p> <p><img src="https://s2.ax1x.com/2019/12/30/lQyagH.png" alt="676.png"></p> <p>可以看到，当流程没有异常的时候，一切都是OK的，那么现在就模拟一个异常。在febs-server-system的TradeLogServiceImpl的pay方法中手动制造一个异常：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>@Override
+@Transactional
+public void pay(TradeLog tradeLog, String transactionId) {
+    tradeLog.setCreateTime(new Date());
+    tradeLog.setStatus(&quot;下单并支付成功&quot;);
+    // 保存支付日志
+    this.save(tradeLog);
+    log.info(&quot;用户已经下单并支付成功商品ID为{}，名称为{}的商品&quot;, tradeLog.getGoodsId(), tradeLog.getGoodsName());
+    // 记录事务日志
+    TransactionLog transactionLog = new TransactionLog();
+    transactionLog.setTransactionId(transactionId);
+    String remark = String.format(&quot;事务ID为%s的本地事务执行成功&quot;, transactionId);
+    transactionLog.setRemark(remark);
+    transactionLogMapper.insert(transactionLog);
+    log.info(&quot;事务ID为{}的本地事务执行成功&quot;, transactionId);
+
+    throw new RuntimeException(&quot;抛个异常~&quot;);
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><p>重启febs-server-system模块，重新使用Postman发送测试请求：</p> <p><img src="https://s2.ax1x.com/2019/12/30/lQ6Bz4.png" alt="677.png"></p> <p>febs-server-system日志：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>2019-12-30 19:08:59 INFO  [FEBS-Server-System,,,] http-nio-8201-exec-1 cc.mrbird.febs.server.system.service.impl.TradeLogServiceImpl 检测商品Id为4，名称为Apple Watch Series 5的商品库存，库存充足
+2019-12-30 19:09:00 INFO  [FEBS-Server-System,,,] http-nio-8201-exec-1 p6spy 2019-12-30 19:09:00 | 耗时 2 ms | SQL 语句：
+INSERT INTO t_trade_log (CREATE_TIME, GOODS_ID, GOODS_NAME, STATUS) VALUES ('2019-12-30T19:09:00.279+0800', '4', 'Apple Watch Series 5', '下单并支付成功');
+2019-12-30 19:09:00 INFO  [FEBS-Server-System,,,] http-nio-8201-exec-1 cc.mrbird.febs.server.system.service.impl.TradeLogServiceImpl 用户已经下单并支付成功商品ID为4，名称为Apple Watch Series 5的商品
+2019-12-30 19:09:00 INFO  [FEBS-Server-System,,,] http-nio-8201-exec-1 p6spy 2019-12-30 19:09:00 | 耗时 1 ms | SQL 语句：
+INSERT INTO t_transaction_log (REMARK, TRANSACTION_ID) VALUES ('事务ID为5d756122-e560-4ce4-a850-3e4721b3df95的本地事务执行成功', '5d756122-e560-4ce4-a850-3e4721b3df95');
+2019-12-30 19:09:00 INFO  [FEBS-Server-System,,,] http-nio-8201-exec-1 cc.mrbird.febs.server.system.service.impl.TradeLogServiceImpl 事务ID为5d756122-e560-4ce4-a850-3e4721b3df95的本地事务执行成功
+2019-12-30 19:09:00 INFO  [FEBS-Server-System,,,] http-nio-8201-exec-1 cc.mrbird.febs.server.system.listener.MyRocketMQListener 本地事务回滚，往RocketMQ发送ROLLBACK
+java.lang.RuntimeException: 抛个异常~
+	at cc.mrbird.febs.server.system.service.impl.TradeLogServiceImpl.pay(TradeLogServiceImpl.java:67)
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p>可以看到，本地事务回滚了，并且成功向RocketMQ发送了ROLLBACK。</p> <p>这时候查看febs-server-test日志，会发现并没有新的日志。查看数据库t_trade_log表发现并没有新的记录。</p> <p>至此，我们已经成功通过RocketMQ的事务消息机制实现了分布式事务问题。</p> <p>我们也可以模拟下RocketMQ事务回查的情况。将刚刚在febs-server-system的TradeLogServiceImpl的pay方法中的异常移除掉，以debug的方式启动febs-server-system，在MyRocketMQListener中打个断点：</p> <p><img src="https://s2.ax1x.com/2019/12/30/lQT2Tg.png" alt="678.png"></p> <p>使用Postman发送测试请求：</p> <p><img src="https://s2.ax1x.com/2019/12/30/lQ2TOJ.png" alt="679.png"></p> <p>方法已经走到了断点，febs-server-system日志输出如下：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>2019-12-30 20:16:22 INFO  [FEBS-Server-System,,,] http-nio-8201-exec-4 cc.mrbird.febs.server.system.service.impl.TradeLogServiceImpl 检测商品Id为5，名称为AirPods Pro的商品库存，库存充足
+2019-12-30 20:16:23 INFO  [FEBS-Server-System,,,] http-nio-8201-exec-4 p6spy 2019-12-30 20:16:23 | 耗时 3 ms | SQL 语句：
+INSERT INTO t_trade_log (CREATE_TIME, GOODS_ID, GOODS_NAME, STATUS) VALUES ('2019-12-30T20:16:23.608+0800', '5', 'AirPods Pro', '下单并支付成功');
+2019-12-30 20:16:23 INFO  [FEBS-Server-System,,,] http-nio-8201-exec-4 cc.mrbird.febs.server.system.service.impl.TradeLogServiceImpl 用户已经下单并支付成功商品ID为5，名称为AirPods Pro的商品
+2019-12-30 20:16:23 INFO  [FEBS-Server-System,,,] http-nio-8201-exec-4 p6spy 2019-12-30 20:16:23 | 耗时 0 ms | SQL 语句：
+INSERT INTO t_transaction_log (REMARK, TRANSACTION_ID) VALUES ('事务ID为a9cd4a44-d284-48d8-9abd-5ae911c4c2ad的本地事务执行成功', 'a9cd4a44-d284-48d8-9abd-5ae911c4c2ad');
+2019-12-30 20:16:23 INFO  [FEBS-Server-System,,,] http-nio-8201-exec-4 cc.mrbird.febs.server.system.service.impl.TradeLogServiceImpl 事务ID为a9cd4a44-d284-48d8-9abd-5ae911c4c2ad的本地事务执行成功
+功
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>这个时候还没有往RocketMQ发送COMMIT，所以febs-server-test自然不会去消费这笔消息。</p> <p>在CMD中找到端口为8201（febs-server-system的端口）的进程并强制杀死：</p> <p><img src="https://s2.ax1x.com/2019/12/30/lQ7WDK.png" alt="680.png"></p> <p>回到IDEA可以看到febs-server-system已经被强制杀死了：</p> <p><img src="https://s2.ax1x.com/2019/12/30/lQH6Ig.png" alt="681.png"></p> <p>这个过程模拟的就是网络突然终端或者应用突然宕机时，RocketMQ没有收到事务状态确认消息的情况。</p> <p>重新启动febs-server-system，稍等一段实际后，控制台日志打印如下：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>2019-12-30 20:26:05 INFO  [FEBS-Server-System,,,] pool-2-thread-1 cc.mrbird.febs.server.system.listener.MyRocketMQListener RocketMQ事务状态回查
+2019-12-30 20:26:05 INFO  [FEBS-Server-System,,,] pool-2-thread-1 p6spy 2019-12-30 20:26:05 | 耗时 0 ms | SQL 语句：
+SELECT ID, REMARK, TRANSACTION_ID FROM t_transaction_log WHERE (TRANSACTION_ID = 'a9cd4a44-d284-48d8-9abd-5ae911c4c2ad');
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>查看febs-server-test日志：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>2019-12-30 20:26:05 INFO  [FEBS-Server-Test,,,] ConsumeMessageThread_5 cc.mrbird.febs.server.test.listener.MyRocketMQListener 监听到用户已经下单并支付成功ID为5，名称为AirPods Pro的商品
+2019-12-30 20:26:05 INFO  [FEBS-Server-Test,,,] ConsumeMessageThread_5 cc.mrbird.febs.server.test.service.impl.TradeLogServiceImpl 商品ID为5，名称为AirPods Pro的商品打包完毕，开始物流配送
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>可以看到，消息已经成功被消费，数据库中的日志也是正常的：</p> <p><img src="https://s2.ax1x.com/2019/12/30/lQbwY4.png" alt="682.png"></p> <h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <p>你可能会想，如果febs-server-test里的业务方法出现异常回滚了该怎么办？其实像febs-server-test这样的下游业务，一般都会有重试的机制，即使达到最大重试次数后，业务执行还是失败的话，可以执行后续的回退方法，比如退单等（我们已经通过事务消息避免了最糟糕的情况出现，比如用户下单失败却将商品发出的情况）。</p> <p>由此场景我们也可以总结出基于消息的最终一致性方案的缺点是：事务一致性较弱，对代码的入侵较大；优点是代码难度较低，性能较高。</p></div></div>  <div class="page-edit"><div class="edit-link"><a href="https://github.com/lixuanfengs/cactus-vuepress-sc/edit/master/docs/《SpringCloud微服务权限系统搭建》笔记/10.分布式事务/04.基于消息中间件RocketMQ方案（二）.md" target="_blank" rel="noopener noreferrer">编辑</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2022/05/13, 15:20:04</span></div></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/pages/f8eaa1/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">基于消息中间件RocketMQ方案（一）🥒</div></a> <a href="/pages/8c9029/" class="page-nav-centre page-nav-centre-next"><div class="tooltip">基于TX-LCN方案🌍</div></a></div> <div class="page-nav"><p class="inner"><span class="prev">
+          ←
+          <a href="/pages/f8eaa1/" class="prev">基于消息中间件RocketMQ方案（一）🥒</a></span> <span class="next"><a href="/pages/8c9029/">基于TX-LCN方案🌍</a>→
+        </span></p></div></div></div> <div class="article-list"><div class="article-title"><a href="/archives/" class="iconfont icon-bi">最近更新</a></div> <div class="article-wrapper"><dl><dd>01</dd> <dt><a href="/pages/10a196/"><div>
+              k8s基础命令
+              <!----></div></a> <span class="date">07-20</span></dt></dl><dl><dd>02</dd> <dt><a href="/pages/95874c/"><div>
+              K8S基础入门
+              <!----></div></a> <span class="date">07-20</span></dt></dl><dl><dd>03</dd> <dt><a href="/pages/32abc1/"><div>
+              MySQL8.0主从配置
+              <!----></div></a> <span class="date">07-20</span></dt></dl> <dl><dd></dd> <dt><a href="/archives/" class="more">更多文章&gt;</a></dt></dl></div></div></main></div> <div class="footer"><div class="icons"><a href="mailto:1183895890@qq.com" title="发邮件" target="_blank" class="iconfont icon-youjian"></a><a href="https://github.com/lixuanfengs" title="GitHub" target="_blank" class="iconfont icon-github"></a><a href="https://music.163.com/#/playlist?id=755597173" title="听音乐" target="_blank" class="iconfont icon-erji"></a></div> 
+    Theme by
+    <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> 
+      | Copyright © 2022-2022
+      <span>Cactusli | <a href="https://github.com/lixuanfengs/cactus-vuepress/blob/master/LICENSE" target="_blank">MIT License</a></span></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+            跟随系统
+          </li><li class="iconfont icon-rijianmoshi">
+            浅色模式
+          </li><li class="iconfont icon-yejianmoshi">
+            深色模式
+          </li><li class="iconfont icon-yuedu">
+            阅读模式
+          </li></ul></div></div> <div class="body-bg" style="background:url() center center / cover no-repeat;opacity:0.5;"></div> <!----> <!----></div><div class="global-ui"><div></div></div></div>
+    <script src="/assets/js/app.857140c0.js" defer></script><script src="/assets/js/2.39467ed8.js" defer></script><script src="/assets/js/279.2fa4de9d.js" defer></script>
+  </body>
+</html>
